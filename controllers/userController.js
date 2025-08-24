@@ -2,16 +2,11 @@ import { UserService } from "../services/userService.js";
 import { QRCodeService } from "../services/qrCodeService.js";
 
 export class UserController {
-    /**
-     * Affiche la page d'accueil
-     */
+
     static showHome(req, res) {
         res.render("index");
     }
 
-    /**
-     * Affiche la liste de tous les utilisateurs
-     */
     static showUsers(req, res) {
         try {
             const users = UserService.getUsers();
@@ -25,21 +20,16 @@ export class UserController {
         }
     }
 
-    /**
-     * Affiche le formulaire d'ajout d'utilisateur
-     */
+
     static showAddUserForm(req, res) {
         res.render("add-user");
     }
 
-    /**
-     * Traite l'ajout d'un nouvel utilisateur
-     */
+
     static async addUser(req, res) {
         try {
             const userData = req.body;
 
-            // Validation des données
             const validation = UserService.validateUser(userData);
             if (!validation.isValid) {
                 return res.status(400).render("add-user", {
@@ -48,7 +38,6 @@ export class UserController {
                 });
             }
 
-            // Ajout de l'utilisateur
             const newUser = UserService.addUser(userData);
             if (!newUser) {
                 return res.status(500).render("add-user", {
@@ -57,10 +46,10 @@ export class UserController {
                 });
             }
 
-            // Génération du QR code
+
             const qrCodePath = await QRCodeService.generateQRCode(newUser);
             if (qrCodePath) {
-                // Mettre à jour l'utilisateur avec le chemin du QR code
+
                 const users = UserService.getUsers();
                 const userIndex = users.findIndex(u => u.id === newUser.id);
                 if (userIndex !== -1) {
@@ -79,9 +68,7 @@ export class UserController {
         }
     }
 
-    /**
-     * Affiche les détails d'un utilisateur
-     */
+
     static showUserDetails(req, res) {
         try {
             const userId = parseInt(req.params.id);
@@ -93,7 +80,7 @@ export class UserController {
                 });
             }
 
-            // Vérifier si le QR code existe
+
             const qrCodePath = QRCodeService.getQRCodePath(user.id);
             if (qrCodePath) {
                 user.qrcode = qrCodePath;
@@ -108,9 +95,6 @@ export class UserController {
         }
     }
 
-    /**
-     * Recherche des utilisateurs
-     */
     static searchUsers(req, res) {
         try {
             const query = req.query.q || "";

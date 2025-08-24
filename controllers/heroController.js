@@ -1,9 +1,7 @@
 import { HeroService } from "../services/heroService.js";
 
 export class HeroController {
-    /**
-     * Affiche un super-héros aléatoire
-     */
+
     static showRandomHero(req, res) {
         try {
             const randomHero = HeroService.getRandomHero();
@@ -16,9 +14,7 @@ export class HeroController {
         }
     }
 
-    /**
-     * Recherche des super-héros (fonctionnalité future)
-     */
+
     static searchHeroes(req, res) {
         try {
             const query = req.query.q || "";

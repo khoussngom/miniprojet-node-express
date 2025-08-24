@@ -1,12 +1,8 @@
 export class ValidationMiddleware {
-    /**
-     * Middleware de validation pour l'ajout d'utilisateur
-     */
     static validateUserInput(req, res, next) {
         const { name, age, github, email } = req.body;
         const errors = [];
 
-        // Validation du nom
         if (!name || name.trim() === '') {
             errors.push('Le nom est obligatoire');
         } else if (name.length < 2) {
@@ -15,7 +11,6 @@ export class ValidationMiddleware {
             errors.push('Le nom ne peut pas dépasser 50 caractères');
         }
 
-        // Validation de l'âge
         if (!age) {
             errors.push('L\'âge est obligatoire');
         } else {
@@ -27,7 +22,6 @@ export class ValidationMiddleware {
             }
         }
 
-        // Validation du GitHub
         if (!github || github.trim() === '') {
             errors.push('Le lien GitHub est obligatoire');
         } else {
@@ -37,7 +31,6 @@ export class ValidationMiddleware {
             }
         }
 
-        // Validation de l'email
         if (!email || email.trim() === '') {
             errors.push('L\'email est obligatoire');
         } else {
@@ -54,7 +47,6 @@ export class ValidationMiddleware {
             });
         }
 
-        // Nettoyer les données
         req.body = {
             name: name.trim(),
             age: parseInt(age),
@@ -65,9 +57,6 @@ export class ValidationMiddleware {
         next();
     }
 
-    /**
-     * Middleware de validation pour les paramètres ID
-     */
     static validateUserId(req, res, next) {
         const userId = parseInt(req.params.id);
 
@@ -81,9 +70,7 @@ export class ValidationMiddleware {
         next();
     }
 
-    /**
-     * Middleware de validation pour les requêtes de recherche
-     */
+
     static validateSearchQuery(req, res, next) {
         const query = req.query.q;
 

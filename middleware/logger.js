@@ -1,7 +1,5 @@
 export class LoggerMiddleware {
-    /**
-     * Middleware de logging des requêtes
-     */
+
     static logRequests(req, res, next) {
         const timestamp = new Date().toISOString();
         const method = req.method;
@@ -10,7 +8,6 @@ export class LoggerMiddleware {
 
         console.log(`[${timestamp}] ${method} ${url} - ${userAgent}`);
 
-        // Log du temps de réponse
         const startTime = Date.now();
 
         res.on('finish', () => {
@@ -22,9 +19,6 @@ export class LoggerMiddleware {
         next();
     }
 
-    /**
-     * Middleware de logging des erreurs
-     */
     static logErrors(err, req, res, next) {
         const timestamp = new Date().toISOString();
         const method = req.method;
