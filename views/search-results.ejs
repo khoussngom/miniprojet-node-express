@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche - Mini Projet Express</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl">
+            <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+            </h1>
+            <nav class="flex justify-center gap-4 flex-wrap">
+                <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-home'></i> Accueil
+                </a>
+                <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-group'></i> Utilisateurs
+                </a>
+                <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-plus'></i> Ajouter
+                </a>
+                <a href="/random-hero" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-mask'></i> Héros
+                </a>
+            </nav>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="bg-white rounded-2xl p-6 mb-8 shadow-lg">
+            <form action="/users/search" method="GET" class="flex gap-4">
+                <div class="flex-1">
+                    <input type="text" name="q" value="<%= query %>" placeholder="Rechercher un utilisateur par nom..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center gap-2">
+                    <i class='bx bx-search'></i> Rechercher
+                </button>
+            </form>
+        </div>
+
+        <!-- Results -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                    <i class='bx bx-search text-blue-600'></i> Résultats de recherche
+                </h2>
+                <% if (query) { %>
+                    <p class="text-gray-600 text-lg">
+                        <span class="font-medium"><%= results.length %></span> résultat
+                        <%= results.length > 1 ? 's' : '' %>
+                            pour "<span class="font-medium text-blue-600"><%= query %></span>"
+                    </p>
+                    <% } else { %>
+                        <p class="text-gray-600 text-lg">Entrez un terme de recherche pour commencer</p>
+                        <% } %>
+            </div>
+
+            <% if (query && results.length === 0) { %>
+                <!-- No Results -->
+                <div class="text-center py-12">
+                    <i class='bx bx-search-alt text-gray-400 text-8xl mb-4'></i>
+                    <h3 class="text-xl font-medium text-gray-600 mb-4">Aucun résultat trouvé</h3>
+                    <p class="text-gray-500 mb-6">
+                        Aucun utilisateur ne correspond à votre recherche "<strong><%= query %></strong>"
+                    </p>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <a href="/users" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2">
+                            <i class='bx bx-group'></i> Voir tous les utilisateurs
+                        </a>
+                        <a href="/add-user" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2">
+                            <i class='bx bx-plus'></i> Ajouter un utilisateur
+                        </a>
+                    </div>
+                </div>
+
+                <% } else if (!query) { %>
+                    <!-- Initial State -->
+                    <div class="text-center py-12">
+                        <i class='bx bx-search text-gray-400 text-8xl mb-4'></i>
+                        <h3 class="text-xl font-medium text-gray-600 mb-4">Rechercher des utilisateurs</h3>
+                        <p class="text-gray-500 mb-6">
+                            Utilisez la barre de recherche ci-dessus pour trouver des utilisateurs par leur nom
+                        </p>
+                        <a href="/users" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2">
+                            <i class='bx bx-group'></i> Voir tous les utilisateurs
+                        </a>
+                    </div>
+
+                    <% } else { %>
+                        <!-- Results Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <% results.forEach(user => { %>
+                                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                                    <div class="text-center">
+                                        <!-- User Avatar -->
+                                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <i class='bx bx-user text-blue-600 text-3xl'></i>
+                                        </div>
+
+                                        <!-- User Info -->
+                                        <h3 class="text-xl font-bold text-gray-800 mb-2">
+                                            <%= user.name.replace(new RegExp(`(${query})`, 'gi'), '<mark class="bg-yellow-200 px-1 rounded">$1</mark>') %>
+                                        </h3>
+                                        <p class="text-gray-600 mb-1">
+                                            <i class='bx bx-cake'></i>
+                                            <%= user.age %> ans
+                                        </p>
+                                        <p class="text-gray-600 mb-4">
+                                            <i class='bx bx-envelope'></i>
+                                            <%= user.email %>
+                                        </p>
+
+                                        <!-- GitHub Link -->
+                                        <a href="<%= user.github %>" target="_blank" class="text-gray-700 hover:text-black transition-colors inline-flex items-center gap-1 mb-4">
+                                            <i class='bx bxl-github'></i> GitHub
+                                        </a>
+
+                                        <!-- Action Buttons -->
+                                        <div class="flex gap-2 justify-center mt-4">
+                                            <a href="/users/<%= user.id %>" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm flex items-center gap-1">
+                                                <i class='bx bx-show'></i> Voir détails
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }); %>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="text-center mt-8 pt-6 border-t border-gray-200">
+                            <div class="flex gap-4 justify-center flex-wrap">
+                                <a href="/users" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2">
+                                    <i class='bx bx-group'></i> Voir tous les utilisateurs
+                                </a>
+                                <a href="/add-user" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors inline-flex items-center gap-2">
+                                    <i class='bx bx-plus'></i> Ajouter un utilisateur
+                                </a>
+                            </div>
+                        </div>
+                        <% } %>
+        </div>
+
+        <!-- Search Tips -->
+        <div class="mt-8 bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl">
+            <div class="text-center">
+                <h3 class="text-white font-bold text-lg mb-4 flex items-center justify-center gap-2">
+                    <i class='bx bx-lightbulb'></i> Conseils de recherche
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-white/90 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i class='bx bx-check text-green-400'></i>
+                        <span>La recherche n'est pas sensible à la casse</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class='bx bx-check text-green-400'></i>
+                        <span>Recherche partielle supportée</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class='bx bx-check text-green-400'></i>
+                        <span>Recherche dans les noms uniquement</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

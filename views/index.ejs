@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Mini Projet Express</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl">
+            <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+            </h1>
+            <nav class="flex justify-center gap-4 flex-wrap">
+                <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-home'></i> Accueil
+                </a>
+                <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-group'></i> Utilisateurs
+                </a>
+                <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-plus'></i> Ajouter
+                </a>
+                <a href="/random-hero" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-mask'></i> Héros
+                </a>
+            </nav>
+        </div>
+
+        <!-- Welcome Section -->
+        <div class="bg-white rounded-2xl p-8 mb-8 shadow-lg">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                    Bienvenue dans notre application !
+                    <i class='bx bx-wave text-blue-600'></i>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    Une application Express.js moderne pour gérer les utilisateurs avec génération automatique de QR codes et bien plus encore.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-blue-600 text-5xl mb-4">
+                        <i class='bx bx-group'></i>
+                    </div>
+                    <h3 class="text-blue-700 font-bold text-lg mb-3">Gestion d'utilisateurs</h3>
+                    <p class="text-gray-600">Visualisez, ajoutez et gérez facilement vos utilisateurs avec une interface intuitive.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-green-600 text-5xl mb-4">
+                        <i class='bx bx-qr'></i>
+                    </div>
+                    <h3 class="text-green-700 font-bold text-lg mb-3">QR Codes automatiques</h3>
+                    <p class="text-gray-600">Chaque utilisateur possède son propre QR code généré automatiquement avec ses informations.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-purple-600 text-5xl mb-4">
+                        <i class='bx bx-search'></i>
+                    </div>
+                    <h3 class="text-purple-700 font-bold text-lg mb-3">Recherche intelligente</h3>
+                    <p class="text-gray-600">Trouvez rapidement un utilisateur grâce à notre système de recherche par nom.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                    <div class="text-orange-600 text-5xl mb-4">
+                        <i class='bx bx-mask'></i>
+                    </div>
+                    <h3 class="text-orange-700 font-bold text-lg mb-3">Héros aléatoire</h3>
+                    <p class="text-gray-600">Découvrez un superhéros différent à chaque visite pour vous divertir !</p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-10">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/users" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class='bx bx-group'></i> Voir les utilisateurs
+                    </a>
+                    <a href="/add-user" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class='bx bx-plus'></i> Ajouter un utilisateur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Héros Aléatoire - Mini Projet Express</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl">
+            <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+            </h1>
+            <nav class="flex justify-center gap-4 flex-wrap">
+                <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-home'></i> Accueil
+                </a>
+                <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-group'></i> Utilisateurs
+                </a>
+                <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-plus'></i> Ajouter
+                </a>
+                <a href="/random-hero" class="bg-white/30 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i class='bx bx-mask'></i> Héros
+                </a>
+            </nav>
+        </div>
+
+        <!-- Hero Display -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                    <i class='bx bx-mask text-purple-600'></i> Votre Héros Aléatoire
+                </h2>
+                <p class="text-gray-600 text-lg">Découvrez le super-héros qui vous accompagne aujourd'hui !</p>
+            </div>
+
+            <!-- Hero Card -->
+            <div class="bg-white border-2 border-purple-200 rounded-2xl p-8 text-center shadow-lg">
+                <!-- Hero Icon -->
+                <div class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class='bx bx-mask text-purple-600 text-5xl'></i>
+                </div>
+
+                <!-- Hero Name -->
+                <h3 class="text-4xl font-bold text-gray-800 mb-6">
+                    <%= hero %>
+                </h3>
+
+                <!-- Hero Stats (Fun fake stats) -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <div class="text-red-600 text-2xl font-bold">
+                            <%= Math.floor(Math.random() * 41) + 60 %>
+                        </div>
+                        <div class="text-red-600 text-sm font-medium">Force</div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-blue-600 text-2xl font-bold">
+                            <%= Math.floor(Math.random() * 41) + 60 %>
+                        </div>
+                        <div class="text-blue-600 text-sm font-medium">Vitesse</div>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-green-600 text-2xl font-bold">
+                            <%= Math.floor(Math.random() * 41) + 60 %>
+                        </div>
+                        <div class="text-green-600 text-sm font-medium">Intelligence</div>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="text-yellow-600 text-2xl font-bold">
+                            <%= Math.floor(Math.random() * 41) + 60 %>
+                        </div>
+                        <div class="text-yellow-600 text-sm font-medium">Énergie</div>
+                    </div>
+                </div>
+
+                <!-- Fun Quote -->
+                <div class="bg-purple-50 p-4 rounded-lg mb-6">
+                    <i class='bx bx-quote-alt-left text-purple-600 text-xl'></i>
+                    <p class="text-purple-700 italic font-medium text-lg">
+                        "
+                        <%= hero %> est prêt à sauver le monde !"
+                    </p>
+                    <i class='bx bx-quote-alt-right text-purple-600 text-xl float-right'></i>
+                </div>
+
+                <!-- Power Level Bar -->
+                <div class="mb-6">
+                    <% const powerLevel = Math.floor(Math.random() * 41) + 60; %>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-gray-700 font-medium">Niveau de puissance</span>
+                            <span class="text-gray-700 font-bold"><%= powerLevel %>%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-purple-600 h-3 rounded-full transition-all duration-1000" data-width="<%= powerLevel %>%" style="width: <%= powerLevel %>%"></div>
+                        </div>
+                </div>
+
+                <!-- Action Button -->
+                <a href="/random-hero" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 text-lg font-medium shadow-lg hover:shadow-xl hover:-translate-y-1">
+                    <i class='bx bx-refresh'></i> Nouveau Héros !
+                </a>
+            </div>
+
+            <!-- Fun Facts -->
+            <div class="mt-8 bg-blue-50 rounded-lg p-6 border border-blue-200">
+                <h4 class="font-bold text-blue-700 mb-4 flex items-center gap-2">
+                    <i class='bx bx-info-circle'></i> Le saviez-vous ?
+                </h4>
+                <div class="space-y-2 text-blue-700 text-sm">
+                    <p>• Cette application utilise la librairie "superheroes" pour générer des noms aléatoires</p>
+                    <p>• Il existe plus de 4,500 noms de super-héros dans la base de données</p>
+                    <p>• Chaque rechargement vous donne un héros différent !</p>
+                    <p>• Les statistiques sont générées aléatoirement pour le fun 🎲</p>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center mt-6">
+                <a href="/" class="text-gray-600 hover:text-gray-800 transition-colors inline-flex items-center gap-2">
+                    <i class='bx bx-arrow-back'></i> Retour à l'accueil
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Hero Cards -->
+        <div class="mt-8 text-center">
+            <h3 class="text-white text-xl font-bold mb-6">Autres fonctionnalités</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="/users" class="bg-white/10 backdrop-blur-lg hover:bg-white/20 text-white p-6 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                    <i class='bx bx-group text-4xl mb-3'></i>
+                    <h4 class="font-bold text-lg mb-2">Utilisateurs</h4>
+                    <p class="text-white/80 text-sm">Gérez vos utilisateurs</p>
+                </a>
+
+                <a href="/add-user" class="bg-white/10 backdrop-blur-lg hover:bg-white/20 text-white p-6 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                    <i class='bx bx-plus text-4xl mb-3'></i>
+                    <h4 class="font-bold text-lg mb-2">Ajouter</h4>
+                    <p class="text-white/80 text-sm">Nouvel utilisateur</p>
+                </a>
+
+                <a href="/users/search" class="bg-white/10 backdrop-blur-lg hover:bg-white/20 text-white p-6 rounded-xl transition-all duration-300 hover:-translate-y-1">
+                    <i class='bx bx-search text-4xl mb-3'></i>
+                    <h4 class="font-bold text-lg mb-2">Rechercher</h4>
+                    <p class="text-white/80 text-sm">Trouvez un utilisateur</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation pour la barre de puissance
+        window.addEventListener('load', function() {
+            const powerBar = document.querySelector('.bg-purple-600');
+            if (powerBar) {
+                powerBar.style.width = '0%';
+                setTimeout(() => {
+                    powerBar.style.width = powerBar.getAttribute('data-width');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+
+</html>

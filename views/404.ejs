@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page non trouvée - Mini Projet Express</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl">
+            <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+            </h1>
+            <nav class="flex justify-center gap-4 flex-wrap">
+                <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-home'></i> Accueil
+                </a>
+                <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-group'></i> Utilisateurs
+                </a>
+                <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-plus'></i> Ajouter
+                </a>
+                <a href="/random-hero" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-mask'></i> Héros
+                </a>
+            </nav>
+        </div>
+
+        <!-- 404 Error -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto text-center">
+            <!-- Error Icon -->
+            <div class="mb-8">
+                <i class='bx bx-error text-red-500 text-9xl mb-4'></i>
+                <h2 class="text-6xl font-bold text-gray-800 mb-4">404</h2>
+                <h3 class="text-2xl font-bold text-gray-700 mb-4">Page non trouvée</h3>
+            </div>
+
+            <!-- Error Message -->
+            <div class="mb-8">
+                <% if (typeof message !== 'undefined' && message) { %>
+                    <p class="text-gray-600 text-lg mb-4">
+                        <%= message %>
+                    </p>
+                    <% } else { %>
+                        <p class="text-gray-600 text-lg mb-4">
+                            Oops ! La page que vous recherchez semble avoir disparu dans l'espace numérique.
+                        </p>
+                        <% } %>
+                            <p class="text-gray-500">
+                                Peut-être qu'elle n'a jamais existé, ou peut-être qu'elle a été déplacée vers une autre dimension !
+                            </p>
+            </div>
+
+            <!-- Fun 404 Message -->
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-8">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <i class='bx bx-sad text-red-600 text-2xl'></i>
+                    <h4 class="font-bold text-red-700">Houston, nous avons un problème !</h4>
+                </div>
+                <p class="text-red-600 text-sm">
+                    La page demandée s'est échappée de notre serveur. Nos développeurs sont déjà sur le terrain pour la retrouver !
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="space-y-4">
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <i class='bx bx-home'></i> Retour à l'accueil
+                    </a>
+                    <a href="/users" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <i class='bx bx-group'></i> Voir les utilisateurs
+                    </a>
+                </div>
+
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="/add-user" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <i class='bx bx-plus'></i> Ajouter un utilisateur
+                    </a>
+                    <a href="/random-hero" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1">
+                        <i class='bx bx-mask'></i> Héros aléatoire
+                    </a>
+                </div>
+            </div>
+
+            <!-- Additional Help -->
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                <h4 class="font-semibold text-gray-700 mb-2 flex items-center justify-center gap-2">
+                    <i class='bx bx-help-circle'></i> Besoin d'aide ?
+                </h4>
+                <p class="text-gray-600 text-sm">
+                    Si vous pensez qu'il s'agit d'une erreur, vous pouvez :
+                </p>
+                <ul class="text-gray-600 text-sm mt-2 space-y-1">
+                    <li>• Vérifier l'URL dans la barre d'adresse</li>
+                    <li>• Utiliser le menu de navigation ci-dessus</li>
+                    <li>• Retourner à la page d'accueil et naviguer depuis là</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fun Stats -->
+        <div class="mt-8 text-center">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl">
+                <h3 class="text-white font-bold text-lg mb-4">Statistiques amusantes sur les erreurs 404</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-white/90 text-sm">
+                    <div>
+                        <div class="text-2xl font-bold text-yellow-300">42%</div>
+                        <div>des erreurs 404 sont causées par des fautes de frappe</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-green-300">∞</div>
+                        <div>possibilités de pages qui n'existent pas</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-blue-300">1</div>
+                        <div>développeur légèrement confus en ce moment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation d'entrée
+        window.addEventListener('load', function() {
+            const elements = document.querySelectorAll('.bg-white');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+
+</html>

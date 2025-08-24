@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title || 'Mini Projet Express' %>
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Navigation Header -->
+        <nav class="mb-8">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl">
+                <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                    <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+                </h1>
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class='bx bx-home'></i> Accueil
+                    </a>
+                    <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class='bx bx-group'></i> Utilisateurs
+                    </a>
+                    <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class='bx bx-plus'></i> Ajouter
+                    </a>
+                    <a href="/users/search" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class='bx bx-search'></i> Rechercher
+                    </a>
+                    <a href="/random-hero" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        <i class='bx bx-mask'></i> Héros Aléatoire
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <%- body %>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center">
+            <div class="bg-white/10 backdrop-blur-lg text-white p-6 rounded-2xl shadow-xl">
+                <p class="flex items-center justify-center gap-2 text-lg">
+                    <i class='bx bx-copyright'></i> 2024 Application Express - Mini Projet Node.js
+                </p>
+                <p class="text-white/80 text-sm mt-2">
+                    Développé avec
+                    <i class='bx bx-heart text-red-400'></i> et Tailwind CSS
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

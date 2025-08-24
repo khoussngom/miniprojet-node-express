@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "name": "khouss ngom",
+    "age": 25,
+    "github": "https://github.com/khouss-ngom",
+    "email": "khoussn@gmail.com"
+  },
+  {
+    "id": 2,
+    "name": "fallou senghor",
+    "age": 30,
+    "github": "https://github.com/fallou-senghor",
+    "email": "fallou@gmail.com"
+  },
+  {
+    "id": 3,
+    "name": "Laye diallo",
+    "age": 28,
+    "github": "https://github.com/laye-diallo",
+    "email": "laye@gmail.com"
+  },
+  {
+    "id": 4,
+    "name": "khouss",
+    "age": 25,
+    "github": "https://github/khouss-ngom",
+    "email": "khoussn@gmaim.com",
+    "qrcode": "/qr-code/user-4.png"
+  }
+]

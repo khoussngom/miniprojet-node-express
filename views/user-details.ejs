@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails -
+        <%= user.name %> - Mini Projet Express</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body class="bg-blue-600 min-h-screen">
+    <div class="container mx-auto max-w-6xl px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 shadow-xl">
+            <h1 class="text-white text-center text-4xl font-bold mb-4 flex items-center justify-center gap-3">
+                <i class='bx bx-rocket text-5xl'></i> Mini Projet Express
+            </h1>
+            <nav class="flex justify-center gap-4 flex-wrap">
+                <a href="/" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-home'></i> Accueil
+                </a>
+                <a href="/users" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-group'></i> Utilisateurs
+                </a>
+                <a href="/add-user" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-plus'></i> Ajouter
+                </a>
+                <a href="/random-hero" class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    <i class='bx bx-mask'></i> Héros
+                </a>
+            </nav>
+        </div>
+
+        <!-- User Details -->
+        <div class="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
+            <!-- Page Title -->
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                    <i class='bx bx-user-circle text-blue-600'></i> Profil utilisateur
+                </h2>
+                <p class="text-gray-600 text-lg">Détails complets de l'utilisateur</p>
+            </div>
+
+            <!-- User Card -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- User Information -->
+                <div class="space-y-6">
+                    <!-- Avatar and Name -->
+                    <div class="text-center lg:text-left">
+                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
+                            <i class='bx bx-user text-blue-600 text-5xl'></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                            <%= user.name %>
+                        </h3>
+                        <p class="text-gray-600">ID: #
+                            <%= user.id %>
+                        </p>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="space-y-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                <i class='bx bx-cake text-blue-600'></i> Âge
+                            </h4>
+                            <p class="text-gray-800 text-lg">
+                                <%= user.age %> ans</p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                <i class='bx bx-envelope text-blue-600'></i> Email
+                            </h4>
+                            <p class="text-gray-800 text-lg">
+                                <a href="mailto:<%= user.email %>" class="hover:text-blue-600 transition-colors">
+                                    <%= user.email %>
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                                <i class='bx bxl-github text-blue-600'></i> Profil GitHub
+                            </h4>
+                            <p class="text-gray-800">
+                                <a href="<%= user.github %>" target="_blank" class="text-blue-600 hover:text-blue-800 transition-colors inline-flex items-center gap-1">
+                                    <%= user.github %>
+                                        <i class='bx bx-link-external'></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-4 flex-wrap">
+                        <a href="/users" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center gap-2">
+                            <i class='bx bx-arrow-back'></i> Retour à la liste
+                        </a>
+                        <a href="<%= user.github %>" target="_blank" class="bg-gray-800 hover:bg-black text-white px-6 py-3 rounded-lg transition-colors flex items-center gap-2">
+                            <i class='bx bxl-github'></i> Voir sur GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- QR Code Section -->
+                <div class="text-center">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h4 class="font-semibold text-gray-700 mb-4 flex items-center justify-center gap-2">
+                            <i class='bx bx-qr text-blue-600'></i> QR Code de l'utilisateur
+                        </h4>
+
+                        <% if (user.qrcode) { %>
+                            <div class="bg-white p-4 rounded-lg shadow-md inline-block">
+                                <img src="<%= user.qrcode %>" alt="QR Code de <%= user.name %>" class="max-w-full h-auto mx-auto" style="max-width: 250px;">
+                            </div>
+                            <p class="text-gray-600 text-sm mt-4">
+                                Scannez ce QR code pour accéder rapidement aux informations de l'utilisateur
+                            </p>
+
+                            <!-- Download Button -->
+                            <div class="mt-4">
+                                <a href="<%= user.qrcode %>" download="qr-code-<%= user.name.replace(/\s+/g, '-').toLowerCase() %>.png" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors inline-flex items-center gap-2 text-sm">
+                                    <i class='bx bx-download'></i> Télécharger QR Code
+                                </a>
+                            </div>
+                            <% } else { %>
+                                <div class="text-gray-500 py-8">
+                                    <i class='bx bx-error-circle text-4xl mb-4'></i>
+                                    <p>QR Code non disponible pour cet utilisateur</p>
+                                    <p class="text-sm mt-2">Le QR Code sera généré lors de la prochaine modification</p>
+                                </div>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <div class="flex items-center gap-2 mb-2">
+                    <i class='bx bx-info-circle text-blue-600'></i>
+                    <h4 class="font-semibold text-blue-700">Informations sur le QR Code</h4>
+                </div>
+                <p class="text-blue-700 text-sm">
+                    Le QR Code contient toutes les informations de l'utilisateur : nom, âge, email et lien GitHub. Il peut être scanné avec n'importe quelle application de lecture de QR Code.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
